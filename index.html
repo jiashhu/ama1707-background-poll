@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#7a1736" />
+    <meta
+      name="description"
+      content="Anonymous AMA1707 student background poll"
+    />
+    <title>AMA1707 Student Background Poll</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page-shell">
+      <section class="poll-card" aria-labelledby="poll-title">
+        <header class="poll-header">
+          <div class="course-badge">AMA1707</div>
+          <p class="eyebrow">Introduction to Calculus</p>
+          <h1 id="poll-title">Tell us about your background</h1>
+          <p class="intro">
+            This anonymous two-question poll will help us understand the class
+            and support your learning more effectively.
+          </p>
+
+          <div class="progress-wrap" aria-label="Form progress">
+            <div class="progress-label">
+              <span id="step-label">Question 1 of 2</span>
+              <span id="progress-percent">50%</span>
+            </div>
+            <div class="progress-track" aria-hidden="true">
+              <div id="progress-bar" class="progress-bar"></div>
+            </div>
+          </div>
+        </header>
+
+        <form id="background-form" novalidate>
+          <section class="form-step is-active" data-step="1">
+            <fieldset>
+              <legend>Where did you complete most of your secondary education?</legend>
+              <p class="question-help">Please choose one option.</p>
+
+              <div class="choice-grid single-choice">
+                <label class="choice-card">
+                  <input type="radio" name="origin" value="Hong Kong" />
+                  <span class="choice-copy">
+                    <strong>Hong Kong</strong>
+                    <small>For example, the HKDSE curriculum</small>
+                  </span>
+                  <span class="choice-mark" aria-hidden="true"></span>
+                </label>
+
+                <label class="choice-card">
+                  <input type="radio" name="origin" value="Mainland China" />
+                  <span class="choice-copy">
+                    <strong>Mainland China</strong>
+                    <small>For example, the Gaokao curriculum</small>
+                  </span>
+                  <span class="choice-mark" aria-hidden="true"></span>
+                </label>
+
+                <label class="choice-card">
+                  <input type="radio" name="origin" value="Other" />
+                  <span class="choice-copy">
+                    <strong>Another country or region</strong>
+                    <small>Including international-school curricula</small>
+                  </span>
+                  <span class="choice-mark" aria-hidden="true"></span>
+                </label>
+
+                <label class="choice-card">
+                  <input type="radio" name="origin" value="Prefer not to say" />
+                  <span class="choice-copy">
+                    <strong>Prefer not to say</strong>
+                    <small>You may still answer Question 2</small>
+                  </span>
+                  <span class="choice-mark" aria-hidden="true"></span>
+                </label>
+              </div>
+              <p id="origin-error" class="error-message" role="alert"></p>
+            </fieldset>
+
+            <button class="primary-button" type="button" id="next-button">
+              Continue
+              <span aria-hidden="true">→</span>
+            </button>
+          </section>
+
+          <section class="form-step" data-step="2" hidden>
+            <fieldset>
+              <legend>What mathematics or calculus have you studied?</legend>
+              <p class="question-help">
+                Choose all that apply. Select “No prior calculus” if none apply.
+              </p>
+
+              <div class="choice-grid multi-choice">
+                <label class="choice-card">
+                  <input type="checkbox" name="mathBackground" value="HKDSE Core Mathematics only" />
+                  <span class="choice-copy"><strong>HKDSE Core Mathematics only</strong></span>
+                  <span class="choice-mark" aria-hidden="true"></span>
+                </label>
+
+                <label class="choice-card">
+                  <input type="checkbox" name="mathBackground" value="HKDSE M1" />
+                  <span class="choice-copy">
+                    <strong>HKDSE M1</strong>
+                    <small>Calculus and Statistics</small>
+                  </span>
+                  <span class="choice-mark" aria-hidden="true"></span>
+                </label>
+
+                <label class="choice-card">
+                  <input type="checkbox" name="mathBackground" value="HKDSE M2" />
+                  <span class="choice-copy">
+                    <strong>HKDSE M2</strong>
+                    <small>Algebra and Calculus</small>
+                  </span>
+                  <span class="choice-mark" aria-hidden="true"></span>
+                </label>
+
+                <label class="choice-card">
+                  <input type="checkbox" name="mathBackground" value="Mainland Gaokao Mathematics" />
+                  <span class="choice-copy"><strong>Mainland Gaokao Mathematics</strong></span>
+                  <span class="choice-mark" aria-hidden="true"></span>
+                </label>
+
+                <label class="choice-card">
+                  <input type="checkbox" name="mathBackground" value="AP Calculus AB" />
+                  <span class="choice-copy"><strong>AP Calculus AB</strong></span>
+                  <span class="choice-mark" aria-hidden="true"></span>
+                </label>
+
+                <label class="choice-card">
+                  <input type="checkbox" name="mathBackground" value="AP Calculus BC" />
+                  <span class="choice-copy"><strong>AP Calculus BC</strong></span>
+                  <span class="choice-mark" aria-hidden="true"></span>
+                </label>
+
+                <label class="choice-card">
+                  <input type="checkbox" name="mathBackground" value="AS-level Mathematics" />
+                  <span class="choice-copy"><strong>AS-level Mathematics</strong></span>
+                  <span class="choice-mark" aria-hidden="true"></span>
+                </label>
+
+                <label class="choice-card">
+                  <input type="checkbox" name="mathBackground" value="A-level Mathematics" />
+                  <span class="choice-copy">
+                    <strong>A-level Mathematics</strong>
+                    <small>Including International A-level</small>
+                  </span>
+                  <span class="choice-mark" aria-hidden="true"></span>
+                </label>
+
+                <label class="choice-card">
+                  <input type="checkbox" name="mathBackground" value="A-level Further Mathematics" />
+                  <span class="choice-copy">
+                    <strong>A-level Further Mathematics</strong>
+                    <small>Including International A-level</small>
+                  </span>
+                  <span class="choice-mark" aria-hidden="true"></span>
+                </label>
+
+                <label class="choice-card">
+                  <input type="checkbox" name="mathBackground" value="IB Mathematics AA SL" />
+                  <span class="choice-copy"><strong>IB Mathematics AA SL</strong></span>
+                  <span class="choice-mark" aria-hidden="true"></span>
+                </label>
+
+                <label class="choice-card">
+                  <input type="checkbox" name="mathBackground" value="IB Mathematics AA HL" />
+                  <span class="choice-copy"><strong>IB Mathematics AA HL</strong></span>
+                  <span class="choice-mark" aria-hidden="true"></span>
+                </label>
+
+                <label class="choice-card">
+                  <input type="checkbox" name="mathBackground" value="IB Mathematics AI SL or HL" />
+                  <span class="choice-copy"><strong>IB Mathematics AI (SL or HL)</strong></span>
+                  <span class="choice-mark" aria-hidden="true"></span>
+                </label>
+
+                <label class="choice-card exclusive-choice">
+                  <input type="checkbox" name="mathBackground" value="No prior calculus" data-exclusive="true" />
+                  <span class="choice-copy">
+                    <strong>No prior calculus</strong>
+                    <small>That is completely fine</small>
+                  </span>
+                  <span class="choice-mark" aria-hidden="true"></span>
+                </label>
+
+                <label class="choice-card">
+                  <input type="checkbox" name="mathBackground" value="Other mathematics or calculus course" data-other="true" />
+                  <span class="choice-copy"><strong>Another mathematics or calculus course</strong></span>
+                  <span class="choice-mark" aria-hidden="true"></span>
+                </label>
+              </div>
+
+              <div id="other-wrap" class="other-wrap" hidden>
+                <label for="other-background">Please tell us briefly (optional)</label>
+                <input
+                  id="other-background"
+                  name="otherBackground"
+                  type="text"
+                  maxlength="100"
+                  autocomplete="off"
+                  placeholder="For example, Canadian Grade 12 Calculus"
+                />
+              </div>
+              <p id="background-error" class="error-message" role="alert"></p>
+            </fieldset>
+
+            <div class="button-row">
+              <button class="secondary-button" type="button" id="back-button">← Back</button>
+              <button class="primary-button" type="submit" id="submit-button">
+                Submit anonymously
+              </button>
+            </div>
+          </section>
+        </form>
+
+        <section id="success-view" class="success-view" hidden aria-live="polite">
+          <div class="success-icon" aria-hidden="true">✓</div>
+          <p class="eyebrow">Response submitted</p>
+          <h2>Thank you!</h2>
+          <p>Your response will help us make AMA1707 a better learning experience.</p>
+        </section>
+
+        <footer>
+          <span aria-hidden="true">🔒</span>
+          No name, student ID, or email address is collected. Please submit once only.
+        </footer>
+      </section>
+    </main>
+
+    <script src="config.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
