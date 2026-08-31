@@ -99,6 +99,81 @@
   gap: 17px;
 }
 
+.donut-chart-wrap {
+  display: grid;
+  grid-template-columns: minmax(220px, 330px) minmax(260px, 1fr);
+  align-items: center;
+  gap: 38px;
+}
+
+.donut-chart {
+  position: relative;
+  width: min(100%, 310px);
+  aspect-ratio: 1;
+  margin: 0 auto;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.04);
+}
+
+.donut-chart::after {
+  position: absolute;
+  inset: 22%;
+  content: "";
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 0 1px rgba(122, 23, 54, 0.06);
+}
+
+.donut-center {
+  position: absolute;
+  inset: 22%;
+  z-index: 1;
+  display: grid;
+  place-content: center;
+  text-align: center;
+}
+
+.donut-center strong {
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  line-height: 1;
+}
+
+.donut-center span {
+  margin-top: 5px;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 750;
+}
+
+.donut-legend {
+  display: grid;
+  gap: 12px;
+}
+
+.legend-row {
+  display: grid;
+  grid-template-columns: 13px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--line);
+}
+
+.legend-swatch {
+  width: 13px;
+  height: 13px;
+  border-radius: 4px;
+}
+
+.legend-label {
+  font-weight: 750;
+}
+
+.legend-row strong {
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
 .bar-row {
   display: grid;
   grid-template-columns: minmax(160px, 280px) minmax(180px, 1fr) 84px;
@@ -149,6 +224,124 @@
   margin: 0;
 }
 
+.stats-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.danger-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50px;
+  padding: 0 20px;
+  cursor: pointer;
+  color: #fff;
+  border: 1px solid #a32222;
+  border-radius: 12px;
+  background: #a32222;
+  font-weight: 800;
+}
+
+.danger-button:hover {
+  background: #831919;
+}
+
+.danger-button:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}
+
+.admin-message {
+  padding: 13px 16px;
+  margin-top: 14px;
+  color: var(--success);
+  border: 1px solid rgba(25, 114, 75, 0.25);
+  border-radius: 12px;
+  background: rgba(25, 114, 75, 0.07);
+  font-weight: 700;
+}
+
+.admin-message.is-error {
+  color: var(--error);
+  border-color: rgba(180, 35, 24, 0.25);
+  background: rgba(180, 35, 24, 0.07);
+}
+
+.reset-dialog {
+  width: min(520px, calc(100% - 28px));
+  padding: 0;
+  color: var(--ink);
+  border: 0;
+  border-radius: 20px;
+  box-shadow: 0 28px 90px rgba(40, 10, 20, 0.32);
+}
+
+.reset-dialog::backdrop {
+  background: rgba(25, 12, 17, 0.62);
+  backdrop-filter: blur(3px);
+}
+
+.reset-dialog form {
+  padding: 28px;
+}
+
+.reset-dialog h2 {
+  margin-bottom: 10px;
+  font-size: 1.65rem;
+}
+
+.reset-dialog form > p:not(.chart-kicker):not(.error-message) {
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.reset-dialog label {
+  display: block;
+  margin: 20px 0 7px;
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+.reset-dialog input {
+  width: 100%;
+  padding: 13px 14px;
+  color: var(--ink);
+  border: 1.5px solid var(--line);
+  border-radius: 11px;
+  outline: none;
+}
+
+.reset-dialog input:focus {
+  border-color: var(--polyured);
+  box-shadow: 0 0 0 3px rgba(122, 23, 54, 0.11);
+}
+
+.dialog-icon {
+  display: grid;
+  place-items: center;
+  width: 50px;
+  height: 50px;
+  margin-bottom: 18px;
+  color: #fff;
+  font-size: 1.65rem;
+  border-radius: 50%;
+  background: #a32222;
+}
+
+.dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.dialog-actions .secondary-button,
+.dialog-actions .danger-button {
+  margin-top: 0;
+}
+
 @media (max-width: 680px) {
   .stats-shell {
     width: min(100% - 24px, 1180px);
@@ -173,6 +366,11 @@
     gap: 7px 12px;
   }
 
+  .donut-chart-wrap {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
   .bar-track {
     grid-column: 1 / -1;
     grid-row: 2;
@@ -186,5 +384,16 @@
   .stats-footer {
     align-items: stretch;
     flex-direction: column;
+  }
+
+  .stats-actions,
+  .dialog-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .stats-actions button,
+  .dialog-actions button {
+    width: 100%;
   }
 }

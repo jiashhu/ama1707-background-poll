@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#7a1736" />
+    <title>AMA1707 Quick Poll</title>
+    <link rel="stylesheet" href="styles.css?v=4" />
+    <link rel="stylesheet" href="quick.css?v=4" />
+  </head>
+  <body>
+    <main class="page-shell quick-page-shell">
+      <section class="poll-card" aria-labelledby="quick-question">
+        <header class="poll-header quick-header">
+          <div class="course-badge" data-course-code>AMA1707</div>
+          <p class="eyebrow" data-course-title>Introduction to Calculus</p>
+          <h1 id="quick-title">Quick Check</h1>
+          <p class="intro" id="quick-instruction">Choose one answer and submit.</p>
+        </header>
+
+        <form id="quick-form" class="quick-form" novalidate>
+          <fieldset>
+            <legend id="quick-question">Which option is correct?</legend>
+            <p class="question-help">Please choose one option.</p>
+            <div id="quick-options" class="choice-grid quick-options"></div>
+            <p id="quick-error" class="error-message" role="alert"></p>
+          </fieldset>
+          <button id="quick-submit" class="primary-button quick-submit" type="submit">
+            Submit answer
+          </button>
+        </form>
+
+        <section id="quick-success" class="success-view" hidden aria-live="polite">
+          <div class="success-icon" aria-hidden="true">✓</div>
+          <p class="eyebrow">Answer submitted</p>
+          <h2>Thank you!</h2>
+          <p>Your response has been added to the live class results.</p>
+        </section>
+
+        <footer>Anonymous classroom poll. Please submit once for each round.</footer>
+      </section>
+    </main>
+
+    <script src="config.js?v=4"></script>
+    <script src="quick-poll.js?v=4"></script>
+  </body>
+</html>

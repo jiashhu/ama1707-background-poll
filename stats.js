@@ -14,6 +14,7 @@ const resetError = document.querySelector("#reset-error");
 const cancelResetButton = document.querySelector("#cancel-reset-button");
 const confirmResetButton = document.querySelector("#confirm-reset-button");
 const adminMessage = document.querySelector("#admin-message");
+const chartColors = ["#7a1736", "#d26483", "#24445f", "#d7a63c", "#4f8f72", "#8d6ab8"];
 let refreshTimer;
 let requestNumber = 0;
 let pendingResetCheck = false;
@@ -86,10 +87,63 @@ function renderBarChart(container, values, totalResponses) {
   });
 }
 
+function renderDonutChart(container, values, totalResponses) {
+  container.replaceChildren();
+  const entries = sortedEntries(values);
+
+  if (entries.length === 0 || totalResponses === 0) {
+    const message = document.createElement("p");
+    message.className = "question-help";
+    message.textContent = "No responses yet.";
+    container.append(message);
+    return;
+  }
+
+  let accumulated = 0;
+  const segments = entries.map(([label, count], index) => {
+    const start = accumulated;
+    accumulated += (count / totalResponses) * 100;
+    return `${chartColors[index % chartColors.length]} ${start}% ${accumulated}%`;
+  });
+
+  const donut = document.createElement("div");
+  donut.className = "donut-chart";
+  donut.style.background = `conic-gradient(${segments.join(", ")})`;
+  donut.setAttribute("role", "img");
+  donut.setAttribute(
+    "aria-label",
+    entries
+      .map(([label, count]) => `${label}: ${count}, ${Math.round((count / totalResponses) * 100)}%`)
+      .join("; ")
+  );
+
+  const center = document.createElement("div");
+  center.className = "donut-center";
+  center.innerHTML = `<strong>${totalResponses}</strong><span>responses</span>`;
+  donut.append(center);
+
+  const legend = document.createElement("div");
+  legend.className = "donut-legend";
+  entries.forEach(([label, count], index) => {
+    const percentage = Math.round((count / totalResponses) * 100);
+    const row = document.createElement("div");
+    row.className = "legend-row";
+    row.innerHTML = `
+      <span class="legend-swatch" style="background:${chartColors[index % chartColors.length]}"></span>
+      <span class="legend-label"></span>
+      <strong>${count} · ${percentage}%</strong>
+    `;
+    row.querySelector(".legend-label").textContent = label;
+    legend.append(row);
+  });
+
+  container.append(donut, legend);
+}
+
 function renderStatistics(data) {
   const total = Number(data.totalResponses) || 0;
   totalElement.textContent = String(total);
-  renderBarChart(originChart, data.origins, total);
+  renderDonutChart(originChart, data.origins, total);
   renderBarChart(mathChart, data.mathematics, total);
   statusElement.hidden = true;
   statusElement.classList.remove("is-error");

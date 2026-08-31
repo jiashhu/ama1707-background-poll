@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#7a1736" />
+    <meta name="robots" content="noindex,nofollow" />
+    <title>AMA1707 Quick Poll Results</title>
+    <link rel="stylesheet" href="styles.css?v=4" />
+    <link rel="stylesheet" href="stats.css?v=4" />
+    <link rel="stylesheet" href="quick.css?v=4" />
+  </head>
+  <body>
+    <main class="stats-shell">
+      <header class="stats-header">
+        <div>
+          <div class="course-badge" data-course-code>AMA1707</div>
+          <p class="eyebrow" data-course-title>Introduction to Calculus</p>
+          <h1 id="quick-stats-title">Quick Check</h1>
+          <p class="intro" id="quick-stats-question">Which option is correct?</p>
+        </div>
+        <div class="response-total" aria-live="polite">
+          <strong id="quick-total">0</strong>
+          <span>responses</span>
+        </div>
+      </header>
+
+      <section id="quick-stats-status" class="stats-status" aria-live="polite">Loading results…</section>
+
+      <section id="quick-chart-card" class="chart-card quick-chart-card" hidden>
+        <p class="chart-kicker">Live A/B/C/D results</p>
+        <div id="quick-donut" class="donut-chart-wrap"></div>
+      </section>
+
+      <footer class="stats-footer">
+        <span id="quick-updated">Waiting for data</span>
+        <div class="stats-actions">
+          <button id="quick-refresh" class="secondary-button" type="button">Refresh now</button>
+          <button id="quick-reset" class="danger-button" type="button">Start next round</button>
+        </div>
+      </footer>
+      <div id="quick-admin-message" class="admin-message" hidden aria-live="polite"></div>
+    </main>
+
+    <dialog id="quick-reset-dialog" class="reset-dialog" aria-labelledby="quick-reset-title">
+      <form id="quick-reset-form">
+        <div class="dialog-icon" aria-hidden="true">↻</div>
+        <p class="chart-kicker">Teacher control</p>
+        <h2 id="quick-reset-title">Start a new quick-poll round?</h2>
+        <p>
+          Current answers for this question will be moved to the
+          <strong>Quick Poll Archive</strong> sheet before the chart restarts.
+        </p>
+        <label for="quick-reset-key">Teacher reset code</label>
+        <input id="quick-reset-key" type="password" minlength="8" required placeholder="Enter the private reset code" />
+        <p id="quick-reset-error" class="error-message" role="alert"></p>
+        <div class="dialog-actions">
+          <button id="quick-cancel-reset" class="secondary-button" type="button">Cancel</button>
+          <button id="quick-confirm-reset" class="danger-button" type="submit">Archive and clear</button>
+        </div>
+      </form>
+    </dialog>
+
+    <script src="config.js?v=4"></script>
+    <script src="quick-stats.js?v=4"></script>
+  </body>
+</html>
