@@ -88,98 +88,12 @@
 
           <section class="form-step" data-step="2" hidden>
             <fieldset>
-              <legend>What mathematics or calculus have you studied?</legend>
-              <p class="question-help">
-                Choose all that apply. Select “No prior calculus” if none apply.
-              </p>
+              <legend>What is the highest or most relevant mathematics/calculus course you have studied?</legend>
+              <p class="question-help">Please choose one option.</p>
 
-              <div class="choice-grid multi-choice">
+              <div class="choice-grid math-choice-grid">
                 <label class="choice-card">
-                  <input type="checkbox" name="mathBackground" value="HKDSE Core Mathematics only" />
-                  <span class="choice-copy"><strong>HKDSE Core Mathematics only</strong></span>
-                  <span class="choice-mark" aria-hidden="true"></span>
-                </label>
-
-                <label class="choice-card">
-                  <input type="checkbox" name="mathBackground" value="HKDSE M1" />
-                  <span class="choice-copy">
-                    <strong>HKDSE M1</strong>
-                    <small>Calculus and Statistics</small>
-                  </span>
-                  <span class="choice-mark" aria-hidden="true"></span>
-                </label>
-
-                <label class="choice-card">
-                  <input type="checkbox" name="mathBackground" value="HKDSE M2" />
-                  <span class="choice-copy">
-                    <strong>HKDSE M2</strong>
-                    <small>Algebra and Calculus</small>
-                  </span>
-                  <span class="choice-mark" aria-hidden="true"></span>
-                </label>
-
-                <label class="choice-card">
-                  <input type="checkbox" name="mathBackground" value="Mainland Gaokao Mathematics" />
-                  <span class="choice-copy"><strong>Mainland Gaokao Mathematics</strong></span>
-                  <span class="choice-mark" aria-hidden="true"></span>
-                </label>
-
-                <label class="choice-card">
-                  <input type="checkbox" name="mathBackground" value="AP Calculus AB" />
-                  <span class="choice-copy"><strong>AP Calculus AB</strong></span>
-                  <span class="choice-mark" aria-hidden="true"></span>
-                </label>
-
-                <label class="choice-card">
-                  <input type="checkbox" name="mathBackground" value="AP Calculus BC" />
-                  <span class="choice-copy"><strong>AP Calculus BC</strong></span>
-                  <span class="choice-mark" aria-hidden="true"></span>
-                </label>
-
-                <label class="choice-card">
-                  <input type="checkbox" name="mathBackground" value="AS-level Mathematics" />
-                  <span class="choice-copy"><strong>AS-level Mathematics</strong></span>
-                  <span class="choice-mark" aria-hidden="true"></span>
-                </label>
-
-                <label class="choice-card">
-                  <input type="checkbox" name="mathBackground" value="A-level Mathematics" />
-                  <span class="choice-copy">
-                    <strong>A-level Mathematics</strong>
-                    <small>Including International A-level</small>
-                  </span>
-                  <span class="choice-mark" aria-hidden="true"></span>
-                </label>
-
-                <label class="choice-card">
-                  <input type="checkbox" name="mathBackground" value="A-level Further Mathematics" />
-                  <span class="choice-copy">
-                    <strong>A-level Further Mathematics</strong>
-                    <small>Including International A-level</small>
-                  </span>
-                  <span class="choice-mark" aria-hidden="true"></span>
-                </label>
-
-                <label class="choice-card">
-                  <input type="checkbox" name="mathBackground" value="IB Mathematics AA SL" />
-                  <span class="choice-copy"><strong>IB Mathematics AA SL</strong></span>
-                  <span class="choice-mark" aria-hidden="true"></span>
-                </label>
-
-                <label class="choice-card">
-                  <input type="checkbox" name="mathBackground" value="IB Mathematics AA HL" />
-                  <span class="choice-copy"><strong>IB Mathematics AA HL</strong></span>
-                  <span class="choice-mark" aria-hidden="true"></span>
-                </label>
-
-                <label class="choice-card">
-                  <input type="checkbox" name="mathBackground" value="IB Mathematics AI SL or HL" />
-                  <span class="choice-copy"><strong>IB Mathematics AI (SL or HL)</strong></span>
-                  <span class="choice-mark" aria-hidden="true"></span>
-                </label>
-
-                <label class="choice-card exclusive-choice">
-                  <input type="checkbox" name="mathBackground" value="No prior calculus" data-exclusive="true" />
+                  <input type="radio" name="mathBackground" value="No prior calculus" />
                   <span class="choice-copy">
                     <strong>No prior calculus</strong>
                     <small>That is completely fine</small>
@@ -188,8 +102,69 @@
                 </label>
 
                 <label class="choice-card">
-                  <input type="checkbox" name="mathBackground" value="Other mathematics or calculus course" data-other="true" />
-                  <span class="choice-copy"><strong>Another mathematics or calculus course</strong></span>
+                  <input type="radio" name="mathBackground" value="HKDSE Core Mathematics only" />
+                  <span class="choice-copy"><strong>HKDSE Core Mathematics only</strong></span>
+                  <span class="choice-mark" aria-hidden="true"></span>
+                </label>
+
+                <label class="choice-card">
+                  <input type="radio" name="mathBackground" value="HKDSE M1" />
+                  <span class="choice-copy">
+                    <strong>HKDSE M1</strong>
+                    <small>Calculus and Statistics</small>
+                  </span>
+                  <span class="choice-mark" aria-hidden="true"></span>
+                </label>
+
+                <label class="choice-card">
+                  <input type="radio" name="mathBackground" value="HKDSE M2" />
+                  <span class="choice-copy">
+                    <strong>HKDSE M2</strong>
+                    <small>Algebra and Calculus</small>
+                  </span>
+                  <span class="choice-mark" aria-hidden="true"></span>
+                </label>
+
+                <label class="choice-card">
+                  <input type="radio" name="mathBackground" value="Mainland Gaokao Mathematics" />
+                  <span class="choice-copy"><strong>Mainland Gaokao Mathematics</strong></span>
+                  <span class="choice-mark" aria-hidden="true"></span>
+                </label>
+
+                <label class="choice-card">
+                  <input type="radio" name="mathBackground" value="AP Calculus AB" />
+                  <span class="choice-copy"><strong>AP Calculus AB</strong></span>
+                  <span class="choice-mark" aria-hidden="true"></span>
+                </label>
+
+                <label class="choice-card">
+                  <input type="radio" name="mathBackground" value="AP Calculus BC" />
+                  <span class="choice-copy"><strong>AP Calculus BC</strong></span>
+                  <span class="choice-mark" aria-hidden="true"></span>
+                </label>
+
+                <label class="choice-card">
+                  <input type="radio" name="mathBackground" value="A-level / International A-level Mathematics" />
+                  <span class="choice-copy">
+                    <strong>A-level / International A-level Mathematics</strong>
+                  </span>
+                  <span class="choice-mark" aria-hidden="true"></span>
+                </label>
+
+                <label class="choice-card">
+                  <input type="radio" name="mathBackground" value="A-level / International A-level Further Mathematics" />
+                  <span class="choice-copy">
+                    <strong>A-level / International A-level Further Mathematics</strong>
+                  </span>
+                  <span class="choice-mark" aria-hidden="true"></span>
+                </label>
+
+                <label class="choice-card">
+                  <input type="radio" name="mathBackground" value="Other mathematics or calculus course" data-other="true" />
+                  <span class="choice-copy">
+                    <strong>Other mathematics or calculus course</strong>
+                    <small>For example, AS-level, IB, Canadian or Australian curricula</small>
+                  </span>
                   <span class="choice-mark" aria-hidden="true"></span>
                 </label>
               </div>

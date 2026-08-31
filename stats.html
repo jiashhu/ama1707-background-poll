@@ -6,8 +6,8 @@
     <meta name="theme-color" content="#7a1736" />
     <meta name="robots" content="noindex,nofollow" />
     <title>AMA1707 Live Poll Results</title>
-    <link rel="stylesheet" href="styles.css" />
-    <link rel="stylesheet" href="stats.css" />
+    <link rel="stylesheet" href="styles.css?v=3" />
+    <link rel="stylesheet" href="stats.css?v=3" />
   </head>
   <body>
     <main class="stats-shell">
@@ -44,7 +44,7 @@
         <section class="chart-card" aria-labelledby="math-chart-title">
           <div class="chart-heading">
             <div>
-              <p class="chart-kicker">Question 2 · multiple selections allowed</p>
+              <p class="chart-kicker">Question 2 · one selection per response</p>
               <h2 id="math-chart-title">Previous mathematics experience</h2>
             </div>
           </div>
@@ -54,11 +54,47 @@
 
       <footer class="stats-footer">
         <span id="last-updated">Waiting for data</span>
-        <button id="refresh-button" class="secondary-button" type="button">Refresh now</button>
+        <div class="stats-actions">
+          <button id="refresh-button" class="secondary-button" type="button">Refresh now</button>
+          <button id="reset-button" class="danger-button" type="button">Start next round</button>
+        </div>
       </footer>
+
+      <div id="admin-message" class="admin-message" hidden aria-live="polite"></div>
     </main>
 
-    <script src="config.js"></script>
-    <script src="stats.js"></script>
+    <dialog id="reset-dialog" class="reset-dialog" aria-labelledby="reset-title">
+      <form id="reset-form">
+        <div class="dialog-icon" aria-hidden="true">↻</div>
+        <p class="chart-kicker">Teacher control</p>
+        <h2 id="reset-title">Start a new response round?</h2>
+        <p>
+          Current responses will be moved to the <strong>Archive</strong> sheet,
+          and the live charts will restart from zero. Previous data will not be lost.
+        </p>
+
+        <label for="reset-key">Teacher reset code</label>
+        <input
+          id="reset-key"
+          name="resetKey"
+          type="password"
+          minlength="8"
+          autocomplete="current-password"
+          required
+          placeholder="Enter the private reset code"
+        />
+        <p id="reset-error" class="error-message" role="alert"></p>
+
+        <div class="dialog-actions">
+          <button id="cancel-reset-button" class="secondary-button" type="button">Cancel</button>
+          <button id="confirm-reset-button" class="danger-button" type="submit">
+            Archive and clear
+          </button>
+        </div>
+      </form>
+    </dialog>
+
+    <script src="config.js?v=3"></script>
+    <script src="stats.js?v=3"></script>
   </body>
 </html>

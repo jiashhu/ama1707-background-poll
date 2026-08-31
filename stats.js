@@ -6,8 +6,28 @@ const originChart = document.querySelector("#origin-chart");
 const mathChart = document.querySelector("#math-chart");
 const updatedElement = document.querySelector("#last-updated");
 const refreshButton = document.querySelector("#refresh-button");
+const resetButton = document.querySelector("#reset-button");
+const resetDialog = document.querySelector("#reset-dialog");
+const resetForm = document.querySelector("#reset-form");
+const resetKeyInput = document.querySelector("#reset-key");
+const resetError = document.querySelector("#reset-error");
+const cancelResetButton = document.querySelector("#cancel-reset-button");
+const confirmResetButton = document.querySelector("#confirm-reset-button");
+const adminMessage = document.querySelector("#admin-message");
 let refreshTimer;
 let requestNumber = 0;
+let pendingResetCheck = false;
+let demoRoundCleared = false;
+
+function isDemoMode() {
+  return new URLSearchParams(window.location.search).get("demo") === "1";
+}
+
+function showAdminMessage(message, isError = false) {
+  adminMessage.textContent = message;
+  adminMessage.hidden = false;
+  adminMessage.classList.toggle("is-error", isError);
+}
 
 function applyStatisticsConfiguration() {
   const courseCode = statsConfig.courseCode || "AMA1707";
@@ -79,6 +99,18 @@ function renderStatistics(data) {
     minute: "2-digit",
     second: "2-digit"
   })}`;
+
+  if (pendingResetCheck) {
+    pendingResetCheck = false;
+    if (total === 0) {
+      showAdminMessage("The new round is ready. Previous responses were moved to Archive.");
+    } else {
+      showAdminMessage(
+        "Responses were not cleared. Check the reset code and confirm that the latest Apps Script version is deployed.",
+        true
+      );
+    }
+  }
 }
 
 function loadStatistics() {
@@ -86,7 +118,11 @@ function loadStatistics() {
   requestNumber += 1;
   const currentRequest = requestNumber;
 
-  if (new URLSearchParams(window.location.search).get("demo") === "1") {
+  if (isDemoMode()) {
+    if (demoRoundCleared) {
+      renderStatistics({ totalResponses: 0, origins: {}, mathematics: {} });
+      return;
+    }
     renderStatistics({
       totalResponses: 42,
       origins: { "Hong Kong": 24, "Mainland China": 13, Other: 5 },
@@ -97,7 +133,7 @@ function loadStatistics() {
         "Mainland Gaokao Mathematics": 13,
         "AP Calculus AB": 3,
         "AP Calculus BC": 2,
-        "A-level Mathematics": 5,
+        "A-level / International A-level Mathematics": 5,
         "No prior calculus": 10
       }
     });
@@ -153,6 +189,71 @@ function scheduleRefresh() {
 }
 
 refreshButton.addEventListener("click", loadStatistics);
+
+resetButton.addEventListener("click", () => {
+  resetError.textContent = "";
+  resetKeyInput.value = "";
+  resetDialog.showModal();
+  resetKeyInput.focus();
+});
+
+cancelResetButton.addEventListener("click", () => resetDialog.close());
+
+resetDialog.addEventListener("click", (event) => {
+  if (event.target === resetDialog) resetDialog.close();
+});
+
+resetForm.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  const resetKey = resetKeyInput.value.trim();
+
+  if (resetKey.length < 8) {
+    resetError.textContent = "The reset code must contain at least 8 characters.";
+    resetKeyInput.focus();
+    return;
+  }
+
+  if (isDemoMode()) {
+    demoRoundCleared = true;
+    resetDialog.close();
+    renderStatistics({ totalResponses: 0, origins: {}, mathematics: {} });
+    showAdminMessage("Demo round cleared. No real data was changed.");
+    return;
+  }
+
+  const endpoint = (statsConfig.submissionEndpoint || "").trim();
+  if (!endpoint) {
+    resetError.textContent = "The Google Apps Script URL is missing from config.js.";
+    return;
+  }
+
+  confirmResetButton.disabled = true;
+  confirmResetButton.textContent = "Starting new round…";
+
+  const body = new URLSearchParams({ action: "reset", resetKey });
+
+  try {
+    await fetch(endpoint, {
+      method: "POST",
+      mode: "no-cors",
+      headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
+      body
+    });
+
+    resetDialog.close();
+    pendingResetCheck = true;
+    showAdminMessage("Reset request sent. Checking the new round…");
+    window.setTimeout(loadStatistics, 1800);
+  } catch (error) {
+    console.error(error);
+    resetError.textContent = "The reset request could not be sent. Please try again.";
+  } finally {
+    resetKeyInput.value = "";
+    confirmResetButton.disabled = false;
+    confirmResetButton.textContent = "Archive and clear";
+  }
+});
+
 applyStatisticsConfiguration();
 loadStatistics();
 scheduleRefresh();

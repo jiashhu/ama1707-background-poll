@@ -206,10 +206,6 @@ legend {
   border-radius: 50%;
 }
 
-.multi-choice .choice-mark {
-  border-radius: 6px;
-}
-
 .choice-card input:checked ~ .choice-mark {
   border-color: var(--polyured);
   background: var(--polyured);
@@ -363,7 +359,7 @@ footer {
     padding-left: 42px;
   }
 
-  .multi-choice {
+  .math-choice-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }

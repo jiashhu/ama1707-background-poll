@@ -57,8 +57,8 @@ function getOrigin() {
   return form.querySelector('input[name="origin"]:checked')?.value || "";
 }
 
-function getBackgrounds() {
-  return backgroundInputs.filter((input) => input.checked).map((input) => input.value);
+function getBackground() {
+  return form.querySelector('input[name="mathBackground"]:checked')?.value || "";
 }
 
 nextButton.addEventListener("click", () => {
@@ -81,20 +81,7 @@ form.addEventListener("change", (event) => {
 
   if (event.target.name !== "mathBackground") return;
 
-  const changedInput = event.target;
-  const exclusiveInput = backgroundInputs.find((input) => input.dataset.exclusive === "true");
-
-  if (changedInput.dataset.exclusive === "true" && changedInput.checked) {
-    backgroundInputs.forEach((input) => {
-      if (input !== changedInput) input.checked = false;
-    });
-  } else if (changedInput.checked && exclusiveInput) {
-    exclusiveInput.checked = false;
-  }
-
-  const otherSelected = backgroundInputs.some(
-    (input) => input.dataset.other === "true" && input.checked
-  );
+  const otherSelected = event.target.dataset.other === "true" && event.target.checked;
   otherWrap.hidden = !otherSelected;
   if (!otherSelected) otherInput.value = "";
   backgroundError.textContent = "";
@@ -123,10 +110,10 @@ async function sendResponse(payload) {
 
 form.addEventListener("submit", async (event) => {
   event.preventDefault();
-  const backgrounds = getBackgrounds();
+  const background = getBackground();
 
-  if (backgrounds.length === 0) {
-    backgroundError.textContent = "Please choose at least one option.";
+  if (!background) {
+    backgroundError.textContent = "Please choose one option.";
     backgroundInputs[0]?.focus();
     return;
   }
@@ -136,7 +123,7 @@ form.addEventListener("submit", async (event) => {
 
   const payload = {
     origin: getOrigin(),
-    mathBackground: backgrounds.join(" | "),
+    mathBackground: background,
     otherBackground: otherInput.value.trim(),
     source: `${config.courseCode || "AMA1707"} student background poll`
   };
