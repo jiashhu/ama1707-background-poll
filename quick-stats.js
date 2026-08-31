@@ -25,15 +25,8 @@ function quickDemoMode() {
 }
 
 function applyQuickStatsConfiguration() {
-  const code = quickStatsConfig.courseCode || "AMA1707";
   const title = quickStatsPoll.title || "Quick Check";
-  document.title = `${code} ${title} Results`;
-  document.querySelectorAll("[data-course-code]").forEach((element) => {
-    element.textContent = code;
-  });
-  document.querySelectorAll("[data-course-title]").forEach((element) => {
-    element.textContent = quickStatsConfig.courseTitle || "Introduction to Calculus";
-  });
+  document.title = `${title} Results`;
   document.querySelector("#quick-stats-title").textContent = title;
   document.querySelector("#quick-stats-question").textContent =
     quickStatsPoll.question || "Which option is correct?";

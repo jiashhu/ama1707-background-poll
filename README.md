@@ -1,4 +1,4 @@
-# AMA1707 Student Background Poll
+# Class Poll
 
 A mobile-friendly, anonymous two-question class poll.
 
@@ -26,13 +26,11 @@ the `pollId`, question, or option text there; the answer page and chart update
 automatically. Adding an option such as E to the `options` array also adds it to
 both pages.
 
-## Quickly change the course information
+## Quickly change the poll wording
 
 Edit only `config.js`:
 
 ```js
-courseCode: "AMA1707",
-courseTitle: "Introduction to Calculus",
 pollTitle: "Tell us about your background",
 pollIntroduction: "..."
 ```
@@ -49,7 +47,7 @@ GitHub Pages alone cannot store submitted data because it only serves static fil
 
 ## 1. Create the response spreadsheet
 
-1. Create a blank Google Sheet, for example `AMA1707 Student Background Poll`.
+1. Create a blank Google Sheet, for example `Class Poll Responses`.
 2. In the sheet, open **Extensions → Apps Script**.
 3. Replace the editor contents with `google-apps-script/Code.gs` from this folder.
 4. Save the project.
@@ -91,23 +89,23 @@ Test one submission and confirm that a `Responses` sheet is created with a new r
 
 ## 3. Publish with GitHub Pages
 
-1. Create a new GitHub repository, for example `ama1707-background-poll`.
+1. Create a new GitHub repository, for example `class-poll`.
 2. Upload the contents of this folder to the repository root.
 3. In the repository, open **Settings → Pages**.
 4. Under **Build and deployment**, select **Deploy from a branch**.
 5. Choose the `main` branch and `/ (root)`, then save.
 6. GitHub will provide an address similar to:
-   `https://YOUR-NAME.github.io/ama1707-background-poll/`
+   `https://YOUR-NAME.github.io/class-poll/`
 
 The live results page will be at:
 
-`https://YOUR-NAME.github.io/ama1707-background-poll/stats.html`
+`https://YOUR-NAME.github.io/class-poll/stats.html`
 
 The reusable quick-poll pages will be at:
 
 ```text
-https://YOUR-NAME.github.io/ama1707-background-poll/quick-poll.html
-https://YOUR-NAME.github.io/ama1707-background-poll/quick-stats.html
+https://YOUR-NAME.github.io/class-poll/quick-poll.html
+https://YOUR-NAME.github.io/class-poll/quick-stats.html
 ```
 
 Both pages are part of the same GitHub Pages deployment. A second repository is

@@ -15,20 +15,12 @@ const successView = document.querySelector("#success-view");
 const backgroundInputs = [...document.querySelectorAll('input[name="mathBackground"]')];
 
 function applyPageConfiguration() {
-  const courseCode = config.courseCode || "AMA1707";
-  const courseTitle = config.courseTitle || "Introduction to Calculus";
   const pollTitle = config.pollTitle || "Tell us about your background";
   const pollIntroduction =
     config.pollIntroduction ||
     "This anonymous two-question poll will help us understand the class and support your learning more effectively.";
 
-  document.title = `${courseCode} Student Background Poll`;
-  document.querySelectorAll("[data-course-code]").forEach((element) => {
-    element.textContent = courseCode;
-  });
-  document.querySelectorAll("[data-course-title]").forEach((element) => {
-    element.textContent = courseTitle;
-  });
+  document.title = "Student Background Poll";
   document.querySelectorAll("[data-poll-title]").forEach((element) => {
     element.textContent = pollTitle;
   });
@@ -125,7 +117,7 @@ form.addEventListener("submit", async (event) => {
     origin: getOrigin(),
     mathBackground: background,
     otherBackground: otherInput.value.trim(),
-    source: `${config.courseCode || "AMA1707"} student background poll`
+    source: "Student background poll"
   };
 
   try {

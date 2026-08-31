@@ -1,9 +1,7 @@
 // Paste the deployed Google Apps Script Web App URL between the quotation marks.
 // Until it is configured, the page runs in preview mode and does not save data.
 window.POLL_CONFIG = {
-  // These four lines control the wording on both the poll and statistics pages.
-  courseCode: "AMA1707",
-  courseTitle: "Introduction to Calculus",
+  // These two lines control the wording on the background-poll pages.
   pollTitle: "Tell us about your background",
   pollIntroduction:
     "This anonymous two-question poll will help us understand the class and support your learning more effectively.",
@@ -21,7 +19,7 @@ window.POLL_CONFIG = {
   // numbers, hyphens and underscores in pollId.
   // -------------------------------------------------------------------------
   quickPoll: {
-    pollId: "calculus-check-01",
+    pollId: "class-check-01",
     title: "Quick Check",
     question: "Which option is correct?",
     instruction: "Choose one answer and submit.",

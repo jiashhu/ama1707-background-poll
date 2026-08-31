@@ -8,20 +8,12 @@ const quickSuccess = document.querySelector("#quick-success");
 const quickPollDemoMode = new URLSearchParams(window.location.search).get("demo") === "1";
 
 function applyQuickPollConfiguration() {
-  const courseCode = quickConfig.courseCode || "AMA1707";
-  const courseTitle = quickConfig.courseTitle || "Introduction to Calculus";
   const title = quickPoll.title || "Quick Check";
   const question = quickPoll.question || "Which option is correct?";
   const instruction = quickPoll.instruction || "Choose one answer and submit.";
   const options = Array.isArray(quickPoll.options) ? quickPoll.options : [];
 
-  document.title = `${courseCode} ${title}`;
-  document.querySelectorAll("[data-course-code]").forEach((element) => {
-    element.textContent = courseCode;
-  });
-  document.querySelectorAll("[data-course-title]").forEach((element) => {
-    element.textContent = courseTitle;
-  });
+  document.title = title;
   document.querySelector("#quick-title").textContent = title;
   document.querySelector("#quick-question").textContent = question;
   document.querySelector("#quick-instruction").textContent = instruction;
@@ -82,7 +74,7 @@ quickForm.addEventListener("submit", async (event) => {
     question: String(quickPoll.question || ""),
     choice: selected.value,
     choiceText: String(option?.text || ""),
-    source: `${quickConfig.courseCode || "AMA1707"} quick poll`
+    source: "Classroom quick poll"
   });
 
   try {

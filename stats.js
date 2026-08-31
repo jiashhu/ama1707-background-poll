@@ -31,15 +31,7 @@ function showAdminMessage(message, isError = false) {
 }
 
 function applyStatisticsConfiguration() {
-  const courseCode = statsConfig.courseCode || "AMA1707";
-  const courseTitle = statsConfig.courseTitle || "Introduction to Calculus";
-  document.title = `${courseCode} Live Poll Results`;
-  document.querySelectorAll("[data-course-code]").forEach((element) => {
-    element.textContent = courseCode;
-  });
-  document.querySelectorAll("[data-course-title]").forEach((element) => {
-    element.textContent = courseTitle;
-  });
+  document.title = "Student Background Results";
 }
 
 function sortedEntries(values) {
